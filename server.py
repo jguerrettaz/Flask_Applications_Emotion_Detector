@@ -1,3 +1,5 @@
+'''Module to identify the emotion elements of a text string'''
+
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +7,8 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_detector():
+    '''Describe the emotion of a text string'''
+
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -21,11 +25,15 @@ def sent_detector():
     if dominant_emo is None:
         return "Invalid text! Please try again!"
 
-    # Return a formatted string with all emotion scores and dominant emotion    
-    return f"For the given statement, the system response is {scores_printed}. The dominant emotion is {dominant_emo}"
+    # Return a formatted string with all emotion scores and dominant emotion
+    return (
+        f"For the given statement, the system response is {scores_printed}."
+        "The dominant emotion is {dominant_emo}"
+    )
 
 @app.route("/")
 def render_index_page():
+    '''Render the main index page'''
     return render_template('index.html')
 
 if __name__ == "__main__":
