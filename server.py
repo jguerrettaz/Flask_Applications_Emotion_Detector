@@ -17,6 +17,10 @@ def sent_detector():
     # Extract the dominant emotion from the response
     dominant_emo = response['dominant_emotion']
 
+    # Handle blank entries
+    if dominant_emo is None:
+        return "Invalid text! Please try again!"
+
     # Return a formatted string with all emotion scores and dominant emotion    
     return f"For the given statement, the system response is {scores_printed}. The dominant emotion is {dominant_emo}"
 
